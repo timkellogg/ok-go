@@ -80,16 +80,7 @@ func AssetHelpers(root string) template.FuncMap {
 	} else {
 		return template.FuncMap{
 			"asset_path": func(asset string) string {
-				var base = "/assets/"
-
-				switch extension := filepath.Ext(asset); extension {
-				case "js":
-					return base + "javascripts/" + asset
-				case "scss":
-					return base + "stylesheets/" + asset
-				default:
-					return ""
-				}
+				return "assets/" + asset
 			},
 		}
 	}

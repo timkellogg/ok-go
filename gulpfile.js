@@ -8,15 +8,18 @@ const minify  = require("gulp-minify")
 const uglify  = require("gulp-uglify")
 const gulpif  = require("gulp-if")
 
+const javascripts = "assets/javascripts/application.js";
+const stylesheets = "assets/stylesheets/application.scss";
+
 gulp.task("assets:compile:js", function() {
-  gulp.src("assets/javascripts/**/*.js")
+  gulp.src(javascripts)
     .pipe(include())
     .pipe(babel({presets: ["es2015"]}))
     .pipe(gulp.dest("public/assets"))
 })
 
 gulp.task("assets:compile:scss", function() {
-  gulp.src("assets/stylesheets/**/*.scss")
+  gulp.src(stylesheets)
     .pipe(include())
     .pipe(sass())
     .pipe(gulp.dest("public/assets"))
@@ -37,7 +40,7 @@ gulp.task("assets:precompile", ["assets:precompile:js", "assets:precompile:scss"
 })
 
 gulp.task("assets:precompile:js", function() {
-  gulp.src("assets/javascripts/**/*.js")
+  gulp.src(javascripts)
     .pipe(include())
     .pipe(babel({presets: ["es2015"]}))
     .pipe(uglify())
@@ -48,7 +51,7 @@ gulp.task("assets:precompile:js", function() {
 })
 
 gulp.task("assets:precompile:scss", function() {
-  gulp.src("assets/stylesheets/**/*.scss")
+  gulp.src(stylesheets)
     .pipe(include())
     .pipe(sass())
     .pipe(minify())
