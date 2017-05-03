@@ -24,7 +24,8 @@ gulp.task("assets:compile:scss", function() {
 
 gulp.task("server", ["assets:compile:js", "assets:compile:scss"], function() {
   gulp.src("").pipe(shell("gin main.go"));
-  gulp.watch(["app/assets/**/*.js", "app/assets/**/*.scss"], ["assets:compile"]);
+  gulp.watch(["assets/**/*.js"], ["assets:compile:js"])
+  gulp.watch(["assets/**/*.scss"], ["assets:compile:scss"])
 });
 
 gulp.task("test", ["assets:compile"], function() {
